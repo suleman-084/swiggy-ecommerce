@@ -1,30 +1,4 @@
-import "./App.css";
-import React from "react";
-import { Header } from "./Components/Header";
-import { Body } from "./Components/Body";
-const ResCart = ({ resData }) => {
-  const { name, cuisines, costForTwo, avgRating } = resData?.info;
-  return (
-    <div className="rescart">
-      <img
-        className="resimg"
-        src={
-          "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/" +
-          resData.info?.cloudinaryImageId
-        }
-        alt="food"
-      />
-      <h3>{name}</h3>
-      <h4>{cuisines.join(",")}</h4>
-      <h4>{costForTwo}</h4>
-      <h4>{avgRating} stars</h4>
-
-      <h4>{resData.info?.sla.deliveryTime} Minutes</h4>
-    </div>
-  );
-};
-
-const resList = [
+export const resList = [
   {
     info: {
       id: "368375",
@@ -840,14 +814,3 @@ const resList = [
     widgetId: "collectionV5RestaurantListWidget_SimRestoRelevance_food_seo",
   },
 ];
-
-const App = () => {
-  return (
-    <div className="app">
-      <Header />
-      <Body />
-    </div>
-  );
-};
-
-export default App;
