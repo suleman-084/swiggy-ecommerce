@@ -20,11 +20,14 @@ export const Body = () => {
         ?.restaurants
     );
   };
-  console.log("restaurantList:", restaurantList);
-  if (restaurantList?.length === 0) {
-    return <Shimmer />;
-  }
-  return (
+  // console.log("restaurantList:", restaurantList);
+  // if (restaurantList?.length === 0) {
+  //   return <Shimmer />;
+  // }
+
+  return restaurantList?.length === 0 ? (
+    <Shimmer />
+  ) : (
     <div className="body">
       <div className="btn">
         <button
