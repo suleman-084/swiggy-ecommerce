@@ -4,6 +4,8 @@ import { Shimmer } from "./Shimmer";
 
 export const Body = () => {
   const [restaurantList, setRestaurantList] = useState([]);
+  const [searchText, setSearchText] = useState("");
+  const [filtered, setFiltered] = useState([]);
   useEffect(() => {
     fetchData();
   }, []);
@@ -19,6 +21,10 @@ export const Body = () => {
       parseData?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants
     );
+    setFiltered(
+      parseData?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle
+        ?.restaurants
+    );
   };
   // console.log("restaurantList:", restaurantList);
   // if (restaurantList?.length === 0) {
@@ -30,13 +36,34 @@ export const Body = () => {
   ) : (
     <div className="body">
       <div className="btn">
+        <div className="search">
+          <input
+            type="search"
+            className="search-box"
+            value={searchText}
+            onChange={(e) => {
+              setSearchText(e.target.value);
+            }}
+          />
+          <button
+            className="search-btn"
+            onClick={() => {
+              const filteredRestaurant = restaurantList.filter((res) =>
+                res.info.name.toLowerCase().includes(searchText.toLowerCase())
+              );
+              setFiltered(filteredRestaurant);
+            }}
+          >
+            Search
+          </button>
+        </div>
         <button
           className="top-res"
           onClick={() => {
             const filteredList = restaurantList.filter(
               (res) => res.info?.avgRating > 4
             );
-            setRestaurantList(filteredList);
+            setFiltered(filteredList);
           }}
         >
           Top Rated Restaurant
@@ -44,7 +71,7 @@ export const Body = () => {
       </div>
 
       <div className="res-container">
-        {restaurantList?.map((restaurant) => {
+        {filtered?.map((restaurant) => {
           return <ResCart key={restaurant.info.id} resData={restaurant} />;
         })}
         {/* <ResCart resData={resList[0]} />
