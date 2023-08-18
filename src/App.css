@@ -8,9 +8,21 @@
   padding: 10px;
   margin: 10px;
 }
+.links {
+  list-style: none;
+  display: flex;
+  gap: 20px; /* Add a gap between navigation links */
+  color: black;
+}
+.nav-link {
+  text-decoration: none; /* Remove underline */
+  color: black; /* Change text color to black */
+}
+
 .nav-items > ul {
   display: flex;
   font-size: 24px;
+  margin-right: 20px;
 }
 .logo {
   width: 160px;
