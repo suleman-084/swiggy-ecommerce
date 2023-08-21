@@ -88,3 +88,12 @@
 button {
   border: 2px solid black;
 }
+.user-card {
+  padding: 10px;
+  border: 1px solid black;
+}
+.user-card-class {
+  padding: 10px;
+  border: 1px solid black;
+  margin-top: 10px;
+}
