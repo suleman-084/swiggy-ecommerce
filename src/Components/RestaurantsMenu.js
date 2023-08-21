@@ -44,13 +44,13 @@ const RestaurantsMenu = () => {
 
       <ul>
         <h2>Menu</h2>
-        {itemCards.map((item) => (
+        {itemCards?.map((item) => (
           <li key={item.card.info.id}>
-            {item.card.info.name} - {" Rs."}
+            {item?.card?.info?.name} - {" Rs."}
             {Math.round(item?.card?.info?.price / 100)}
           </li>
         ))}
-        {/* <li>{itemCards[0].card.info.name}</li> // we can write like this too but map is a good way to get all data at once  */}
+        {/* <li>{itemCards[0].card.info.name}</li> // we can write like this too but map is a good way to get all thata at once  */}
       </ul>
     </div>
   );

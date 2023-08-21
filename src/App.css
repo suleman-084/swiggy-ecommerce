@@ -83,6 +83,7 @@
 
 .search-box {
   border: 2px solid black;
+  width: 100%;
 }
 button {
   border: 2px solid black;
