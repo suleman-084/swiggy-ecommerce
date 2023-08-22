@@ -2,11 +2,14 @@ import { ResCart } from "./ResCart";
 import { useEffect, useState } from "react";
 import { Shimmer } from "./Shimmer";
 import { Link } from "react-router-dom";
+import { useOnlineStatus } from "../Utils/useOnlineStatus";
+// useOnlineStatus
 
 export const Body = () => {
   const [restaurantList, setRestaurantList] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [filtered, setFiltered] = useState([]);
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -27,10 +30,12 @@ export const Body = () => {
         ?.restaurants
     );
   };
-  // console.log("restaurantList:", restaurantList);
-  // if (restaurantList?.length === 0) {
-  //   return <Shimmer />;
-  // }
+  const onlineStatus = useOnlineStatus();
+  if (onlineStatus === false) {
+    return (
+      <h1>Looks like you're offline!! Please check the internet connection</h1>
+    );
+  }
 
   return restaurantList?.length === 0 ? (
     <Shimmer />
