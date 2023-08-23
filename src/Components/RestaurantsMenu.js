@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Shimmer } from "./Shimmer";
 import { useParams } from "react-router-dom";
 import useRestaurantMenu from "../Utils/useRestaurantMenu";
@@ -6,6 +6,8 @@ import useRestaurantMenu from "../Utils/useRestaurantMenu";
 const RestaurantsMenu = () => {
   const { resId } = useParams();
   const resInfo = useRestaurantMenu(resId);
+  const [searchText, setSearchText] = useState("");
+
   console.log("check", resInfo);
 
   if (resInfo === null) return <Shimmer />;
@@ -17,7 +19,10 @@ const RestaurantsMenu = () => {
 
   const { itemCards } =
     resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card;
-  console.log(itemCards);
+
+  const handleSearch = (e) => {
+    setSearchText(e.target.value);
+  };
 
   return (
     <div>
@@ -29,12 +34,26 @@ const RestaurantsMenu = () => {
 
       <ul>
         <h2>Menu</h2>
-        {itemCards?.map((item) => (
-          <li key={item.card.info.id}>
-            {item?.card?.info?.name} - {" Rs."}
-            {Math.round(item?.card?.info?.price / 100)}
-          </li>
-        ))}
+        <input
+          type="search"
+          placeholder="Type here"
+          value={searchText}
+          onChange={handleSearch}
+        />
+
+        {/* <button onClick={() => {}}>search</button> */}
+        {itemCards
+          ?.filter((menu) => {
+            return menu?.card?.info?.name
+              ?.toLowerCase()
+              ?.includes(searchText.toLowerCase());
+          })
+          ?.map((item) => (
+            <li key={item.card.info.id}>
+              {item?.card?.info?.name} - {" Rs."}
+              {Math.round(item?.card?.info?.price / 100)}
+            </li>
+          ))}
         {/* <li>{itemCards[0].card.info.name}</li> // we can write like this too but map is a good way to get all thata at once  */}
       </ul>
     </div>

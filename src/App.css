@@ -1,4 +1,4 @@
-.header {
+/* .header {
   display: flex;
   justify-content: space-between;
   border: 1px solid black;
@@ -11,12 +11,13 @@
 .links {
   list-style: none;
   display: flex;
-  gap: 20px; /* Add a gap between navigation links */
+  gap: 20px;
   color: black;
+  margin: 20px;
 }
 .nav-link {
-  text-decoration: none; /* Remove underline */
-  color: black; /* Change text color to black */
+  text-decoration: none;
+  color: black;
 }
 
 .nav-items > ul {
@@ -99,4 +100,4 @@ button {
 }
 img {
   height: 10rem;
-}
+} */

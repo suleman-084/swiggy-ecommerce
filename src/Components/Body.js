@@ -40,9 +40,9 @@ export const Body = () => {
   return restaurantList?.length === 0 ? (
     <Shimmer />
   ) : (
-    <div className="body">
-      <div className="btn">
-        <div className="search">
+    <div className="body ">
+      <div className="btn ">
+        <div className="search border-1px-solid">
           <input
             type="search"
             className="search-box"
@@ -68,31 +68,40 @@ export const Body = () => {
             Search
           </button>
         </div>
-        <button
-          className="top-res"
-          onClick={() => {
-            const filteredList = restaurantList.filter(
-              (res) => res.info?.avgRating > 4
-            );
-            setFiltered(filteredList);
-          }}
-        >
-          Top Rated Restaurant
-        </button>
+        <div>
+          <button
+            className="top-res"
+            onClick={() => {
+              const filteredList = restaurantList.filter(
+                (res) => res.info?.avgRating > 4
+              );
+              setFiltered(filteredList);
+            }}
+          >
+            Top Rated Restaurant
+          </button>
+        </div>
       </div>
 
       <div className="res-container">
-        {filtered?.map((restaurant) => {
-          return (
-            <Link
-              key={restaurant.info.id}
-              to={"/restaurants/" + restaurant.info.id}
-            >
-              {" "}
-              <ResCart resData={restaurant} />{" "}
-            </Link>
-          );
-        })}
+        {filtered
+          // ?.filter((item) => {
+          //   console.log("item", item);
+          //   return item?.info?.name
+          //     ?.toLowerCase()
+          //     ?.includes(searchText.toLowerCase());
+          // })
+          ?.map((restaurant) => {
+            return (
+              <Link
+                key={restaurant.info.id}
+                to={"/restaurants/" + restaurant.info.id}
+              >
+                {" "}
+                <ResCart resData={restaurant} />{" "}
+              </Link>
+            );
+          })}
         {/* <ResCart resData={resList[0]} />
           <ResCart resData={resList[1]} />
           <ResCart resData={resList[2]} />
