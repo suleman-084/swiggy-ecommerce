@@ -41,19 +41,19 @@ export const Body = () => {
     <Shimmer />
   ) : (
     <div className="body ">
-      <div className="btn ">
-        <div className="search border-1px-solid">
+      <div className="btn flex justify-between">
+        <div className="search ">
           <input
             type="search"
-            className="search-box"
-            placeholder="Search for Restaurants and food"
+            className="search-box border-[2px] border-black  rounded-[20px] ml-[40px] px-[20px]"
+            placeholder="Search for Restaurants"
             value={searchText}
             onChange={(e) => {
               setSearchText(e.target.value);
             }}
           />
           <button
-            className="search-btn"
+            className="search-btn ml-5 px-[20px] bg-[#1c1917] rounded-[20px] text-white py-[10px]"
             onClick={() => {
               if (searchText.trim() === "") {
                 alert("enter something");
@@ -68,9 +68,9 @@ export const Body = () => {
             Search
           </button>
         </div>
-        <div>
+        <div className="border-[2px] border-black px-[20px] mr-[5rem] rounded-[20px]  hover:bg-black">
           <button
-            className="top-res"
+            className="top-res text-[20px] font-[600] mt-[3px] hover:text-white"
             onClick={() => {
               const filteredList = restaurantList.filter(
                 (res) => res.info?.avgRating > 4
@@ -83,25 +83,19 @@ export const Body = () => {
         </div>
       </div>
 
-      <div className="res-container">
-        {filtered
-          // ?.filter((item) => {
-          //   console.log("item", item);
-          //   return item?.info?.name
-          //     ?.toLowerCase()
-          //     ?.includes(searchText.toLowerCase());
-          // })
-          ?.map((restaurant) => {
-            return (
-              <Link
-                key={restaurant.info.id}
-                to={"/restaurants/" + restaurant.info.id}
-              >
-                {" "}
-                <ResCart resData={restaurant} />{" "}
-              </Link>
-            );
-          })}
+      <div className="res-container m-[30px] flex flex-wrap ">
+        {filtered?.map((restaurant) => {
+          return (
+            <Link
+              key={restaurant.info.id}
+              to={"/restaurants/" + restaurant.info.id}
+            >
+              {" "}
+              <ResCart resData={restaurant} />{" "}
+            </Link>
+          );
+        })}
+
         {/* <ResCart resData={resList[0]} />
           <ResCart resData={resList[1]} />
           <ResCart resData={resList[2]} />
