@@ -7,7 +7,7 @@ export const Header = () => {
   const onlineStatus = useOnlineStatus();
   const [btnName, setBtnName] = useState("login");
   return (
-    <div className="header p-4 m-4 flex justify-between bg-[#758283] rounded-[20px]">
+    <div className="header p-4 m-4 flex justify-between bg-[#B99BEE] rounded-[20px]">
       <div className="logo-container w-[200px]  ">
         <img className="logo rounded-[20px]" src={LOGO_URL} alt="logo" />
       </div>
@@ -41,7 +41,7 @@ export const Header = () => {
           </li>
           <li className="px-[20px] hover:font-bold text-[20px] ">
             <button
-              className="login px-[20px] bg-[#FC8019] rounded-[20px] text-white py-[10px] "
+              className="login px-[20px] bg-[#1b1a19] rounded-[20px] text-white py-[10px] "
               onClick={() => {
                 btnName === "login"
                   ? setBtnName("logout")
