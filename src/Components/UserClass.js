@@ -1,4 +1,6 @@
 import React from "react";
+import UserContext from "../Utils/UserContext";
+
 class UserClass extends React.Component {
   constructor(props) {
     super(props);

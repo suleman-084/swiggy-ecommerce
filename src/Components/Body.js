@@ -1,14 +1,17 @@
 import { ResCart } from "./ResCart";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { Shimmer } from "./Shimmer";
 import { Link } from "react-router-dom";
 import { useOnlineStatus } from "../Utils/useOnlineStatus";
+import UserContext from "../Utils/UserContext";
 // useOnlineStatus
 
 export const Body = () => {
   const [restaurantList, setRestaurantList] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [filtered, setFiltered] = useState([]);
+  const { loggedInUser, setUserName } = useContext(UserContext);
+  // console.log("array is", filtered);
 
   useEffect(() => {
     fetchData();
@@ -40,7 +43,7 @@ export const Body = () => {
   return restaurantList?.length === 0 ? (
     <Shimmer />
   ) : (
-    <div className="body ">
+    <div className="body bg-[#E7E9EB] p-4 rounded-[20px]">
       <div className="btn flex justify-between">
         <div className="search ">
           <input
@@ -80,6 +83,15 @@ export const Body = () => {
           >
             Top Rated Restaurant
           </button>
+        </div>
+        <div className="">
+          <label>UserName </label>
+          <input
+            placeholder="Enter user name"
+            className="p-2 "
+            value={loggedInUser}
+            onChange={(e) => setUserName(e.target.value)}
+          />
         </div>
       </div>
 
