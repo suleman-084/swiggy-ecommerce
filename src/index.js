@@ -10,6 +10,7 @@ import Error from "./Components/Error";
 import { Body } from "./Components/Body";
 import RestaurantsMenu from "./Components/RestaurantsMenu";
 import { Shimmer } from "./Components/Shimmer";
+import Cart from "./Components/Cart";
 
 const Grocery = lazy(() => import("./Components/Grocery"));
 const appRouter = createBrowserRouter([
@@ -36,6 +37,10 @@ const appRouter = createBrowserRouter([
             <Grocery />
           </Suspense>
         ),
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
       },
       {
         path: "/restaurants/:resId",

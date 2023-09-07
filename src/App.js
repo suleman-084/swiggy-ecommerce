@@ -4,6 +4,8 @@ import { Header } from "./Components/Header";
 import UserContext from "./Utils/UserContext";
 
 import { Outlet } from "react-router-dom";
+import { Provider } from "react-redux";
+import appStore from "../src/Redux/appStore";
 
 const App = () => {
   const [userName, setUserName] = useState();
@@ -15,10 +17,12 @@ const App = () => {
   }, []);
   return (
     <div className="app">
-      <UserContext.Provider value={{ loggedInUser: userName, setUserName }}>
-        <Header />
-        <Outlet />
-      </UserContext.Provider>
+      <Provider store={appStore}>
+        <UserContext.Provider value={{ loggedInUser: userName, setUserName }}>
+          <Header />
+          <Outlet />
+        </UserContext.Provider>
+      </Provider>
     </div>
   );
 };
